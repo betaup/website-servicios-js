@@ -43,12 +43,21 @@ export const ClientsSection: React.FC = () => {
                     <Slider {...settings}>
                         {CLIENTS.map(client => (
                             <div key={client.id}>
-                                <div className="flex items-center justify-center h-24 transition-all duration-300 hover:scale-110">
-                                    <div className="bg-slate-50 px-4 md:px-8 py-4 md:py-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow w-full">
-                                        <div className="flex items-center gap-3 text-slate-400 hover:text-brand-600 transition-colors">
-                                            <span className="w-4 h-4 rounded-full bg-brand-200"></span>
-                                            <span className="text-base md:text-xl font-bold whitespace-nowrap">
+                                <div className="flex items-center justify-center h-56 md:h-64 transition-all duration-300 px-2">
+                                    <div className="bg-slate-50 px-4 md:px-8 py-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow w-full h-full flex flex-col items-center justify-center gap-4 group">
+                                        <div className="h-16 w-16 bg-white rounded-full p-3 shadow-sm border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                            <img
+                                                src="/assets/logo_js.png"
+                                                alt="Cliente"
+                                                className="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                                            />
+                                        </div>
+                                        <div className="flex flex-col items-center gap-1">
+                                            <span className="text-base md:text-lg font-bold text-slate-700 text-center leading-tight">
                                                 {client.name}
+                                            </span>
+                                            <span className="text-xs text-brand-500 font-medium bg-brand-50 px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                                                Cliente Verificado
                                             </span>
                                         </div>
                                     </div>
