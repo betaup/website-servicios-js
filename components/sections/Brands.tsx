@@ -1,74 +1,52 @@
-import React, { useRef, useEffect, useState } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
 import { BRANDS } from '../../constants';
 
 export const BrandsSection: React.FC = () => {
-    const sliderRef = useRef<Slider>(null);
-    const [isReady, setIsReady] = useState(false);
-
-    useEffect(() => {
-        // Forzar actualización del slider después del montaje
-        const timer = setTimeout(() => {
-            if (sliderRef.current) {
-                sliderRef.current.slickGoTo(0);
-                setIsReady(true);
-            }
-        }, 100);
-
-        return () => clearTimeout(timer);
-    }, []);
-
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: 800,
-        slidesToShow: 5, // Default DESKTOP (Web)
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 1300,
-        pauseOnHover: true,
-        cssEase: "ease-in-out",
-        adaptiveHeight: false,
-        responsive: [
-            {
-                breakpoint: 1024, // < 1024px (Laptops/Tablets)
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 768, // < 768px (Mobile & Small Tablets)
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 640, // < 640px (Strict Mobile)
-                settings: {
-                    slidesToShow: 1, // Mobile View Forced
-                    slidesToScroll: 1,
-                }
-            }
-        ]
-    };
-
     return (
         <section className="py-20 bg-slate-50 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
                 <h3 className="text-center text-2xl md:text-3xl font-bold text-slate-800 mb-12">
                     Especialistas en las mejores marcas
                 </h3>
 
-                <div className={`brands-carousel-wrapper ${isReady ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
-                    <Slider ref={sliderRef} {...settings}>
+                <div className="brands-carousel-wrapper">
+                    <Swiper
+                        modules={[Autoplay]}
+                        slidesPerView={5}
+                        slidesPerGroup={1}
+                        spaceBetween={24}
+                        speed={800}
+                        autoplay={{
+                            delay: 1300,
+                            disableOnInteraction: false,
+                            pauseOnMouseEnter: true,
+                        }}
+                        loop={true}
+                        breakpoints={{
+                            0: {
+                                slidesPerView: 1,
+                                spaceBetween: 12,
+                            },
+                            640: {
+                                slidesPerView: 3,
+                                spaceBetween: 16,
+                            },
+                            768: {
+                                slidesPerView: 4,
+                                spaceBetween: 20,
+                            },
+                            1024: {
+                                slidesPerView: 5,
+                                spaceBetween: 24,
+                            },
+                        }}
+                    >
                         {BRANDS.map(brand => (
-                            <div key={brand.id}>
-                                <div className="flex items-center justify-center h-20 md:h-24 transition-all duration-300 hover:scale-110 w-full">
+                            <SwiperSlide key={brand.id}>
+                                <div className="flex items-center justify-center h-20 md:h-24 transition-all duration-300 w-full">
                                     {brand.logoUrl ? (
                                         <img
                                             src={brand.logoUrl}
@@ -81,53 +59,21 @@ export const BrandsSection: React.FC = () => {
                                         </span>
                                     )}
                                 </div>
-                            </div>
+                            </SwiperSlide>
                         ))}
-                    </Slider>
+                    </Swiper>
                 </div>
             </div>
 
             <style>{`
-                .brands-carousel-wrapper .slick-slider {
+                .brands-carousel-wrapper {
                     user-select: none;
                 }
-
-                /* MOBILE FIRST */
-                .brands-carousel-wrapper .slick-list {
-                    margin: 0 -2px !important;
-                }
-                .brands-carousel-wrapper .slick-slide > div {
-                    padding: 0 2px !important;
-                }
-
-                /* Tablet & Desktop */
-                @media (min-width: 640px) {
-                    .brands-carousel-wrapper .slick-list {
-                        margin: 0 -12px !important;
-                    }
-                    .brands-carousel-wrapper .slick-slide > div {
-                        padding: 0 12px !important;
-                    }
-                }
-
-                .brands-carousel-wrapper .slick-slide {
-                    opacity: 0.6;
-                    transition: opacity 0.3s ease;
-                    display: flex !important;
-                }
-
-                .brands-carousel-wrapper .slick-slide:hover {
-                    opacity: 1;
-                }
-
-                .brands-carousel-wrapper .slick-slide > div {
-                    width: 100% !important;
-                    display: flex !important;
-                }
-
-                .brands-carousel-wrapper .slick-track {
-                    display: flex !important;
+                
+                .brands-carousel-wrapper .swiper-slide {
+                    display: flex;
                     align-items: center;
+                    justify-content: center;
                 }
             `}</style>
         </section>

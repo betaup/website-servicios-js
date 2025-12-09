@@ -1,67 +1,48 @@
-import React, { useRef, useEffect, useState } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
 import { CLIENTS } from '../../constants';
 
 export const ClientsSection: React.FC = () => {
-    const sliderRef = useRef<Slider>(null);
-    const [isReady, setIsReady] = useState(false);
-
-    useEffect(() => {
-        // Forzar actualización del slider después del montaje
-        const timer = setTimeout(() => {
-            if (sliderRef.current) {
-                sliderRef.current.slickGoTo(0);
-                setIsReady(true);
-            }
-        }, 100);
-
-        return () => clearTimeout(timer);
-    }, []);
-
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: 800,
-        slidesToShow: 4, // Default DESKTOP (Web)
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 1300,
-        pauseOnHover: true,
-        cssEase: "ease-in-out",
-        adaptiveHeight: false,
-        responsive: [
-            {
-                breakpoint: 1024, // < 1024px (Laptops/Tablets)
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 768, // < 768px (Mobile & Small Tablets)
-                settings: {
-                    slidesToShow: 1, // Mobile View Forced
-                    slidesToScroll: 1,
-                }
-            }
-        ]
-    };
-
     return (
         <section className="py-20 bg-white border-b border-slate-100 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
                 <p className="text-slate-500 font-medium mb-12 uppercase tracking-widest text-sm text-center">
                     Empresas que confían en nosotros
                 </p>
 
-                <div className={`clients-carousel-wrapper ${isReady ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
-                    <Slider ref={sliderRef} {...settings}>
-                        {CLIENTS.map(client => (
-                            <div key={client.id}>
-                                <div className="flex items-center justify-center h-56 md:h-64 transition-all duration-300 px-2">
+                <div className="clients-carousel-wrapper">
+                    <Swiper
+                        modules={[Autoplay]}
+                        slidesPerView={4}
+                        slidesPerGroup={1}
+                        spaceBetween={24}
+                        speed={800}
+                        autoplay={{
+                            delay: 1300,
+                            disableOnInteraction: false,
+                            pauseOnMouseEnter: true,
+                        }}
+                        loop={true}
+                        breakpoints={{
+                            0: {
+                                slidesPerView: 1,
+                                spaceBetween: 12,
+                            },
+                            768: {
+                                slidesPerView: 3,
+                                spaceBetween: 20,
+                            },
+                            1024: {
+                                slidesPerView: 4,
+                                spaceBetween: 24,
+                            },
+                        }}
+                    >
+                        {CLIENTS.map((client) => (
+                            <SwiperSlide key={client.id}>
+                                <div className="flex items-center justify-center h-56 md:h-64 transition-all duration-300">
                                     <div className="bg-slate-50 px-4 md:px-8 py-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow w-full h-full flex flex-col items-center justify-center gap-4 group">
                                         <div className="h-16 w-16 bg-white rounded-full p-3 shadow-sm border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                             <img
@@ -80,43 +61,20 @@ export const ClientsSection: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </SwiperSlide>
                         ))}
-                    </Slider>
+                    </Swiper>
                 </div>
             </div>
 
             <style>{`
-                .clients-carousel-wrapper .slick-slider {
+                .clients-carousel-wrapper {
                     user-select: none;
                 }
-
-                /* MOBILE FIRST */
-                .clients-carousel-wrapper .slick-list {
-                    margin: 0 -2px !important;
-                }
-                .clients-carousel-wrapper .slick-slide > div {
-                    padding: 0 2px !important;
-                }
-
-                /* Tablet & Desktop */
-                @media (min-width: 640px) {
-                    .clients-carousel-wrapper .slick-list {
-                        margin: 0 -12px !important;
-                    }
-                    .clients-carousel-wrapper .slick-slide > div {
-                        padding: 0 12px !important;
-                    }
-                }
-
-                .clients-carousel-wrapper .slick-slide {
-                    display: flex !important;
+                
+                .clients-carousel-wrapper .swiper-slide {
                     height: auto;
-                }
-
-                .clients-carousel-wrapper .slick-slide > div {
-                    width: 100% !important;
-                    display: flex !important;
+                    display: flex;
                 }
             `}</style>
         </section>
