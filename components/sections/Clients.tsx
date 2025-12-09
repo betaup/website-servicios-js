@@ -66,32 +66,27 @@ export const ClientsSection: React.FC = () => {
                 </div>
             </div>
             <style>{`
-        .clients-carousel-wrapper .slick-list,
-        .brands-carousel-wrapper .slick-list {
-          margin: 0 -16px;
-          padding: 4px 0; /* Espacio para sombras */
+        .clients-carousel-wrapper .slick-list {
+          margin: 0 -20px;
+          padding: 4px 0;
         }
         
-        .clients-carousel-wrapper .slick-slide > div,
-        .brands-carousel-wrapper .slick-slide > div {
-          padding: 0 16px; /* Espacio real entre items */
+        .clients-carousel-wrapper .slick-slide > div {
+          padding: 0 20px;
         }
         
-        .clients-carousel-wrapper .slick-track,
-        .brands-carousel-wrapper .slick-track {
+        .clients-carousel-wrapper .slick-track {
           display: flex !important;
           align-items: stretch;
         }
         
-        .clients-carousel-wrapper .slick-slide,
-        .brands-carousel-wrapper .slick-slide {
+        .clients-carousel-wrapper .slick-slide {
           height: auto;
           display: flex !important;
           flex-direction: column;
           justify-content: center;
         }
         
-        /* Asegurar que el contenido tome el 100% */
         .clients-carousel-wrapper .slick-slide > div {
           width: 100%;
           flex-grow: 1;

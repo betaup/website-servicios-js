@@ -76,7 +76,12 @@ export const BrandsSection: React.FC = () => {
         }
         
         .brands-carousel-wrapper .slick-list {
-          margin: 0 -12px;
+          margin: 0 -20px;
+          padding: 4px 0;
+        }
+
+        .brands-carousel-wrapper .slick-slide > div {
+          padding: 0 20px;
         }
         
         .brands-carousel-wrapper .slick-slide {
