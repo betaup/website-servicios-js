@@ -23,15 +23,9 @@ export const BrandsSection: React.FC = () => {
                 }
             },
             {
-                breakpoint: 768,
+                breakpoint: 768, // min-width 768px
                 settings: {
-                    slidesToShow: 3,
-                }
-            },
-            {
-                breakpoint: 640,
-                settings: {
-                    slidesToShow: 1, // móvil → 1 visible
+                    slidesToShow: 4, // Desktop
                 }
             }
         ]

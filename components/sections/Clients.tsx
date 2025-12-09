@@ -17,17 +17,12 @@ export const ClientsSection: React.FC = () => {
         cssEase: "ease-in-out",
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 768, // min-width: 768px (Tablets/iPad)
                 settings: {
                     slidesToShow: 3,
+                    slidesToScroll: 1,
                 }
             },
-            {
-                breakpoint: 640,
-                settings: {
-                    slidesToShow: 1, // móvil → 1 visible (carta por carta)
-                }
-            }
         ]
     };
 
