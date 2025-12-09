@@ -1,33 +1,52 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { BRANDS } from '../../constants';
 
 export const BrandsSection: React.FC = () => {
+    const sliderRef = useRef<Slider>(null);
+
+    useEffect(() => {
+        // Forzar actualización del slider después del montaje
+        const timer = setTimeout(() => {
+            if (sliderRef.current) {
+                sliderRef.current.slickGoTo(0);
+            }
+        }, 100);
+
+        return () => clearTimeout(timer);
+    }, []);
+
     const settings = {
         dots: false,
         infinite: true,
         speed: 800,
-        slidesToShow: 1, // Default MOBILE: 1 (mobileFirst: true)
+        slidesToShow: 5, // Default DESKTOP (Web)
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 1300,
         pauseOnHover: true,
         cssEase: "ease-in-out",
-        mobileFirst: true,
         responsive: [
             {
-                breakpoint: 640, // min-width 640px
+                breakpoint: 1024, // < 1024px (Laptops/Tablets)
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 768, // < 768px (Mobile & Small Tablets)
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
                 }
             },
             {
-                breakpoint: 1024, // min-width 1024px
+                breakpoint: 640, // < 640px (Strict Mobile)
                 settings: {
-                    slidesToShow: 5,
+                    slidesToShow: 1, // Mobile View Forced
                     slidesToScroll: 1,
                 }
             }
@@ -43,7 +62,7 @@ export const BrandsSection: React.FC = () => {
                 </h3>
 
                 <div className="brands-carousel-wrapper">
-                    <Slider {...settings}>
+                    <Slider ref={sliderRef} {...settings}>
                         {BRANDS.map(brand => (
                             <div key={brand.id}>
                                 <div className="flex items-center justify-center h-20 md:h-24 transition-all duration-300 hover:scale-110 w-full">
