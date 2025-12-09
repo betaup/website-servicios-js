@@ -51,7 +51,7 @@ export const BrandsSection: React.FC = () => {
                                         <img
                                             src={brand.logoUrl}
                                             alt={brand.name}
-                                            className="h-10 md:h-16 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                                            className="h-10 md:h-16 w-auto object-contain transition-all duration-300 hover:scale-110"
                                         />
                                     ) : (
                                         <span className="text-slate-400 hover:text-brand-600 font-semibold text-base md:text-lg whitespace-nowrap transition-colors">
