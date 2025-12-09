@@ -22,20 +22,21 @@ export const Header: React.FC = () => {
   ];
 
   return (
-    <header 
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'
-      }`}
+    <header
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className={`p-2 rounded-full ${isScrolled ? 'bg-brand-50 text-brand-600' : 'bg-white text-brand-600'}`}>
-              <Zap size={24} fill="currentColor" />
-            </div>
+          <div className="flex items-center space-x-3">
+            <img
+              src="/assets/logo_js.png"
+              alt="Confort y Eficiencia JS Logo"
+              className="h-10 w-10 md:h-12 md:w-12 object-contain"
+            />
             <a href="#" className={`font-bold text-xl md:text-2xl ${isScrolled ? 'text-slate-800' : 'text-slate-900'}`}>
-              Control y Eficiencia JS
+              Confort y Eficiencia JS
             </a>
           </div>
 
@@ -45,9 +46,8 @@ export const Header: React.FC = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className={`font-medium transition-colors hover:text-brand-600 ${
-                  isScrolled ? 'text-slate-600' : 'text-slate-700'
-                }`}
+                className={`font-medium transition-colors hover:text-brand-600 ${isScrolled ? 'text-slate-600' : 'text-slate-700'
+                  }`}
               >
                 {link.name}
               </a>
@@ -103,12 +103,16 @@ export const Footer: React.FC = () => {
   return (
     <footer className="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-        
+
         {/* Brand Info */}
         <div className="flex flex-col items-center md:items-start space-y-4">
-          <div className="flex items-center space-x-2 text-white font-bold text-xl">
-            <Zap className="text-brand-500" />
-            <span>Control y Eficiencia JS</span>
+          <div className="flex items-center space-x-3 text-white font-bold text-xl">
+            <img
+              src="/assets/logo_js.png"
+              alt="Confort y Eficiencia JS Logo"
+              className="h-10 w-10 object-contain"
+            />
+            <span>Confort y Eficiencia JS</span>
           </div>
           <p className="text-sm text-slate-400 max-w-xs">
             Expertos en climatización, electricidad y energía solar. Comprometidos con la calidad y tu tranquilidad.
@@ -145,7 +149,7 @@ export const Footer: React.FC = () => {
         </div>
       </div>
       <div className="mt-12 pt-8 border-t border-slate-800 text-center text-sm text-slate-500">
-        © {new Date().getFullYear()} Control y Eficiencia JS. Todos los derechos reservados.
+        © {new Date().getFullYear()} Confort y Eficiencia JS. Todos los derechos reservados.
       </div>
     </footer>
   );
@@ -153,17 +157,33 @@ export const Footer: React.FC = () => {
 
 export const WhatsAppButton: React.FC = () => {
   return (
-    <a
-      href={CONTACT_INFO.whatsappUrl}
-      target="_blank"
-      rel="noreferrer"
-      className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20bd5a] transition-all duration-300 transform hover:scale-110 flex items-center justify-center group"
-      aria-label="Contactar por WhatsApp"
-    >
-      <MessageCircle size={32} fill="white" className="group-hover:animate-pulse" />
-      <span className="absolute right-full mr-3 bg-white text-slate-800 px-3 py-1 rounded shadow-md text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-        ¡Escríbenos!
-      </span>
-    </a>
+    <>
+      <a
+        href={CONTACT_INFO.whatsappUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20bd5a] transition-all duration-300 transform hover:scale-110 flex items-center justify-center group whatsapp-float"
+        aria-label="Contactar por WhatsApp"
+      >
+        <MessageCircle size={32} fill="white" className="group-hover:animate-pulse" />
+        <span className="absolute right-full mr-3 bg-white text-slate-800 px-3 py-1 rounded shadow-md text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+          ¡Escríbenos!
+        </span>
+      </a>
+      <style>{`
+        .whatsapp-float {
+          animation: whatsapp-pulse 2.5s ease-in-out infinite;
+        }
+        
+        @keyframes whatsapp-pulse {
+          0%, 100% {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 0 rgba(37, 211, 102, 0.5);
+          }
+          50% {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 15px rgba(37, 211, 102, 0);
+          }
+        }
+      `}</style>
+    </>
   );
 };

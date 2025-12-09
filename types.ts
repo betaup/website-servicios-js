@@ -36,4 +36,5 @@ export interface Review {
 export interface Brand {
   id: string;
   name: string;
+  logoUrl?: string;
 }

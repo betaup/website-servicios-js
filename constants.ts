@@ -1,11 +1,11 @@
-import { 
-  Wind, 
-  Zap, 
-  Sun, 
-  ShieldCheck, 
-  Clock, 
-  UserCheck, 
-  Award 
+import {
+  Wind,
+  Zap,
+  Sun,
+  ShieldCheck,
+  Clock,
+  UserCheck,
+  Award
 } from 'lucide-react';
 import { Service, Benefit, Stat, Client, Review, Brand } from './types';
 
@@ -13,7 +13,7 @@ export const SERVICES: Service[] = [
   {
     id: 'ac',
     title: 'Aire Acondicionado',
-    description: 'Instalación, mantenimiento preventivo y reparación de sistemas de climatización residencial y comercial.',
+    description: 'Instalación, mantenimiento preventivo, correctivo y reparación de sistemas de climatización residencial y comercial.',
     icon: Wind,
   },
   {
@@ -58,10 +58,10 @@ export const BENEFITS: Benefit[] = [
 ];
 
 export const STATS: Stat[] = [
-  { id: '1', value: '+500', label: 'Instalaciones' },
-  { id: '2', value: '+1200', label: 'Reparaciones' },
-  { id: '3', value: '98%', label: 'Clientes Felices' },
-  { id: '4', value: '+50', label: 'Empresas Atendidas' },
+  { id: '1', value: '+800', label: 'Mantenimientos' }, // Featured stat - placed first
+  { id: '2', value: '+500', label: 'Instalaciones' },
+  { id: '3', value: '+1200', label: 'Reparaciones' },
+  { id: '4', value: '98%', label: 'Clientes Felices' },
 ];
 
 export const CLIENTS: Client[] = [
@@ -97,14 +97,14 @@ export const REVIEWS: Review[] = [
 ];
 
 export const BRANDS: Brand[] = [
-  { id: 'b1', name: 'Carrier' },
-  { id: 'b2', name: 'Trane' },
-  { id: 'b3', name: 'York' },
-  { id: 'b4', name: 'Daikin' },
-  { id: 'b5', name: 'LG' },
-  { id: 'b6', name: 'Samsung' },
-  { id: 'b7', name: 'Mirage' },
-  { id: 'b8', name: 'Midea' },
+  { id: 'b1', name: 'Carrier', logoUrl: '/assets/carrier.png' },
+  { id: 'b2', name: 'Trane', logoUrl: '/assets/trane.png' },
+  { id: 'b3', name: 'York', logoUrl: '/assets/york.png' },
+  { id: 'b4', name: 'Daikin', logoUrl: '/assets/daikin.png' },
+  { id: 'b5', name: 'LG', logoUrl: '/assets/LG.svg' },
+  { id: 'b6', name: 'Samsung', logoUrl: '/assets/Samsung.svg' },
+  { id: 'b7', name: 'Mirage', logoUrl: '/assets/mirage.png' },
+  { id: 'b8', name: 'Midea', logoUrl: '/assets/midea.png' },
 ];
 
 export const CONTACT_INFO = {

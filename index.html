@@ -1,50 +1,85 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Control y Eficiencia JS | Mantenimiento y Reparación</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                50: '#f0fdf4',  // Mint/Green light
-                100: '#dcfce7',
-                500: '#10b981', // Primary Green
-                600: '#059669',
-                700: '#047857',
-                900: '#064e3b',
-              },
-              sky: {
-                500: '#0ea5e9', // Light Blue accent
-              }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/assets/logo_js.png" />
+  <title>Confort y Eficiencia JS | Mantenimiento y Reparación</title>
+
+  <!-- Google Fonts - Rubik (similar to Zalando Sans SemiExpanded) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',   // Very light blue
+              100: '#dbeafe',  // Light blue
+              200: '#bfdbfe',  // Lighter blue
+              400: '#60a5fa',  // Medium light blue
+              500: '#0F4C81',  // Primary Navy Blue
+              600: '#0c3d6b',  // Darker navy
+              700: '#0a3356',  // Deep navy
+              800: '#082944',  // Very deep navy
+              900: '#051e33',  // Darkest navy
             },
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
+            sky: {
+              500: '#0ea5e9', // Light Blue accent
             }
+          },
+          fontFamily: {
+            sans: ['Rubik', 'sans-serif'],
           }
         }
       }
-    </script>
-    <style>
-      /* Custom scrollbar for cleanliness */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
-      }
-    </style>
+    }
+  </script>
+  <style>
+    html {
+      scroll-padding-top: 6rem;
+      /* 96px para compensar header fijo */
+      scroll-behavior: smooth;
+    }
+
+    section,
+    [id] {
+      scroll-margin-top: 6rem;
+    }
+
+    /* Custom scrollbar for cleanliness */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #0F4C81;
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0c3d6b;
+    }
+
+    /* Smooth scroll with offset for fixed header */
+    html {
+      scroll-padding-top: 100px;
+    }
+
+    /* Section separators */
+    section {
+      scroll-margin-top: 100px;
+    }
+  </style>
   <script type="importmap">
 {
   "imports": {
@@ -55,10 +90,12 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="/index.css">
 </head>
-  <body class="bg-slate-50 text-slate-800 antialiased">
-    <div id="root"></div>
+
+<body class="bg-slate-50 text-slate-800 antialiased">
+  <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>
