@@ -625,16 +625,17 @@ export const ContactSection: React.FC = () => {
                       <List size={20} />
                     </div>
                     <select
+                      required
                       name="service"
                       value={formState.service}
                       onChange={handleChange}
                       className="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-100 outline-none transition-all bg-slate-50 focus:bg-white appearance-none cursor-pointer"
                     >
                       <option value="">Selecciona una opción</option>
-                      <option value="aire">Aire Acondicionado</option>
-                      <option value="electricidad">Electricidad</option>
-                      <option value="solar">Paneles Solares</option>
-                      <option value="otro">Otro</option>
+                      <option value="Aire Acondicionado">Aire Acondicionado</option>
+                      <option value="Electricidad">Electricidad</option>
+                      <option value="Paneles Solares">Paneles Solares</option>
+                      <option value="Otro">Otro</option>
                     </select>
                   </div>
                 </div>
