@@ -56,7 +56,7 @@ export const BrandsSection: React.FC = () => {
                                         <img
                                             src={brand.logoUrl}
                                             alt={brand.name}
-                                            className="h-16 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                                            className="h-12 md:h-16 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                                         />
                                     ) : (
                                         <span className="text-slate-400 hover:text-brand-600 font-semibold text-lg whitespace-nowrap transition-colors">
@@ -75,13 +75,23 @@ export const BrandsSection: React.FC = () => {
           user-select: none;
         }
         
+        /* Default tablet/desktop spacing */
         .brands-carousel-wrapper .slick-list {
-          margin: 0 -20px;
+          margin: 0 -12px;
           padding: 4px 0;
         }
-
         .brands-carousel-wrapper .slick-slide > div {
-          padding: 0 20px;
+          padding: 0 12px;
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 640px) {
+          .brands-carousel-wrapper .slick-list {
+            margin: 0 -6px;
+          }
+          .brands-carousel-wrapper .slick-slide > div {
+            padding: 0 6px;
+          }
         }
         
         .brands-carousel-wrapper .slick-slide {

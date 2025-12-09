@@ -33,7 +33,7 @@ export const ClientsSection: React.FC = () => {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: 2,
                     slidesToScroll: 1,
                 }
             }
@@ -66,13 +66,22 @@ export const ClientsSection: React.FC = () => {
                 </div>
             </div>
             <style>{`
+        /* Default tablet/desktop spacing */
         .clients-carousel-wrapper .slick-list {
-          margin: 0 -20px;
-          padding: 4px 0;
+          margin: 0 -12px;
         }
-        
         .clients-carousel-wrapper .slick-slide > div {
-          padding: 0 20px;
+          padding: 0 12px;
+        }
+
+        /* Mobile specific adjustments to maximize space */
+        @media (max-width: 640px) {
+          .clients-carousel-wrapper .slick-list {
+            margin: 0 -6px;
+          }
+          .clients-carousel-wrapper .slick-slide > div {
+            padding: 0 6px;
+          }
         }
         
         .clients-carousel-wrapper .slick-track {
