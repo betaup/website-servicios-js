@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -6,12 +6,14 @@ import { CLIENTS } from '../../constants';
 
 export const ClientsSection: React.FC = () => {
     const sliderRef = useRef<Slider>(null);
+    const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
         // Forzar actualización del slider después del montaje
         const timer = setTimeout(() => {
             if (sliderRef.current) {
                 sliderRef.current.slickGoTo(0);
+                setIsReady(true);
             }
         }, 100);
 
@@ -28,6 +30,7 @@ export const ClientsSection: React.FC = () => {
         autoplaySpeed: 1300,
         pauseOnHover: true,
         cssEase: "ease-in-out",
+        adaptiveHeight: false,
         responsive: [
             {
                 breakpoint: 1024, // < 1024px (Laptops/Tablets)
@@ -54,7 +57,7 @@ export const ClientsSection: React.FC = () => {
                     Empresas que confían en nosotros
                 </p>
 
-                <div className="clients-carousel-wrapper">
+                <div className={`clients-carousel-wrapper ${isReady ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
                     <Slider ref={sliderRef} {...settings}>
                         {CLIENTS.map(client => (
                             <div key={client.id}>
