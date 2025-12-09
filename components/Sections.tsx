@@ -1,4 +1,7 @@
 import React from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import StatItem from './ItemEstadistica';
 import {
   ArrowRight,
@@ -252,6 +255,41 @@ export const StatsSection: React.FC = () => {
 };
 
 export const ClientsSection: React.FC = () => {
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1300,
+    pauseOnHover: true,
+    speed: 800,
+    cssEase: "ease-in-out",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
+  };
+
   return (
     <section className="py-20 bg-white border-b border-slate-100 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -259,58 +297,63 @@ export const ClientsSection: React.FC = () => {
           Empresas que confían en nosotros
         </p>
 
-        {/* Carousel container */}
-        <div className="relative overflow-hidden">
-          {/* Subtle fade at edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
-          {/* Animated carousel track - duplicated for seamless loop */}
-          <div className="flex animate-scroll hover:[animation-play-state:paused]">
-            {/* First set */}
+        <div className="clients-carousel-wrapper">
+          <Slider {...settings}>
             {CLIENTS.map((client) => (
-              <div
-                key={`first-${client.id}`}
-                className="flex-shrink-0 mx-8 flex items-center justify-center transition-all duration-300 hover:scale-110"
-              >
-                <div className="bg-slate-50 px-8 py-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="flex items-center gap-3 text-slate-400 hover:text-brand-600 transition-colors">
-                    <span className="w-4 h-4 rounded-full bg-brand-200"></span>
-                    <span className="text-lg md:text-xl font-bold whitespace-nowrap">{client.name}</span>
+              <div key={client.id}>
+                <div className="flex items-center justify-center h-24 transition-all duration-300 hover:scale-110">
+                  <div className="bg-slate-50 px-8 py-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-center gap-3 text-slate-400 hover:text-brand-600 transition-colors">
+                      <span className="w-4 h-4 rounded-full bg-brand-200"></span>
+                      <span className="text-lg md:text-xl font-bold whitespace-nowrap">{client.name}</span>
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
-            {/* Duplicate set for seamless loop */}
-            {CLIENTS.map((client) => (
-              <div
-                key={`second-${client.id}`}
-                className="flex-shrink-0 mx-8 flex items-center justify-center transition-all duration-300 hover:scale-110"
-              >
-                <div className="bg-slate-50 px-8 py-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="flex items-center gap-3 text-slate-400 hover:text-brand-600 transition-colors">
-                    <span className="w-4 h-4 rounded-full bg-brand-200"></span>
-                    <span className="text-lg md:text-xl font-bold whitespace-nowrap">{client.name}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          </Slider>
         </div>
       </div>
-
       <style>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
+        .clients-carousel-wrapper .slick-list,
+        .brands-carousel-wrapper .slick-list {
+          margin: 0 -16px;
+          padding: 4px 0; /* Espacio para sombras */
         }
         
-        .animate-scroll {
-          animation: scroll 12s linear infinite;
+        .clients-carousel-wrapper .slick-slide > div,
+        .brands-carousel-wrapper .slick-slide > div {
+          padding: 0 16px; /* Espacio real entre items */
+        }
+        
+        .clients-carousel-wrapper .slick-track,
+        .brands-carousel-wrapper .slick-track {
+          display: flex !important;
+          align-items: stretch;
+        }
+        
+        .clients-carousel-wrapper .slick-slide,
+        .brands-carousel-wrapper .slick-slide {
+          height: auto;
+          display: flex !important;
+          flex-direction: column;
+          justify-content: center;
+        }
+        
+        /* Asegurar que el contenido tome el 100% */
+        .clients-carousel-wrapper .slick-slide > div {
+          width: 100%;
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .clients-carousel-wrapper .slick-slide > div > div {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
       `}</style>
     </section>
@@ -350,6 +393,41 @@ export const ReviewsSection: React.FC = () => {
 };
 
 export const BrandsSection: React.FC = () => {
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1300,
+    pauseOnHover: true,
+    speed: 800,
+    cssEase: "ease-in-out",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      }
+    ]
+  };
+
   return (
     <section className="py-20 bg-slate-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -357,68 +435,50 @@ export const BrandsSection: React.FC = () => {
           Especialistas en las mejores marcas
         </h3>
 
-        {/* Carousel container */}
-        <div className="relative overflow-hidden">
-          {/* Subtle fade at edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
-
-          {/* Animated carousel track - duplicated for seamless loop */}
-          <div className="flex animate-scroll-brands hover:[animation-play-state:paused] items-center gap-16">
-            {/* First set */}
+        <div className="brands-carousel-wrapper">
+          <Slider {...settings}>
             {BRANDS.map(brand => (
-              <div
-                key={`first-${brand.id}`}
-                className="flex-shrink-0 transition-all duration-300 hover:scale-110"
-              >
-                {brand.logoUrl ? (
-                  <img
-                    src={brand.logoUrl}
-                    alt={brand.name}
-                    className="h-16 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                  />
-                ) : (
-                  <span className="text-slate-400 hover:text-brand-600 font-semibold text-lg whitespace-nowrap transition-colors">
-                    {brand.name}
-                  </span>
-                )}
+              <div key={brand.id}>
+                <div className="flex items-center justify-center h-24 transition-all duration-300 hover:scale-110">
+                  {brand.logoUrl ? (
+                    <img
+                      src={brand.logoUrl}
+                      alt={brand.name}
+                      className="h-16 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                    />
+                  ) : (
+                    <span className="text-slate-400 hover:text-brand-600 font-semibold text-lg whitespace-nowrap transition-colors">
+                      {brand.name}
+                    </span>
+                  )}
+                </div>
               </div>
             ))}
-            {/* Duplicate set for seamless loop */}
-            {BRANDS.map(brand => (
-              <div
-                key={`second-${brand.id}`}
-                className="flex-shrink-0 transition-all duration-300 hover:scale-110"
-              >
-                {brand.logoUrl ? (
-                  <img
-                    src={brand.logoUrl}
-                    alt={brand.name}
-                    className="h-16 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                  />
-                ) : (
-                  <span className="text-slate-400 hover:text-brand-600 font-semibold text-lg whitespace-nowrap transition-colors">
-                    {brand.name}
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
+          </Slider>
         </div>
       </div>
 
       <style>{`
-        @keyframes scroll-brands {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
+        .brands-carousel-wrapper .slick-slider {
+          user-select: none;
         }
         
-        .animate-scroll-brands {
-          animation: scroll-brands 12s linear infinite;
+        .brands-carousel-wrapper .slick-list {
+          margin: 0 -12px;
+        }
+        
+        .brands-carousel-wrapper .slick-slide {
+          opacity: 0.6;
+          transition: opacity 0.3s ease;
+        }
+        
+        .brands-carousel-wrapper .slick-slide:hover {
+          opacity: 1;
+        }
+        
+        .brands-carousel-wrapper .slick-track {
+          display: flex;
+          align-items: center;
         }
       `}</style>
     </section>
