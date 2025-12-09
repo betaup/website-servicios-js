@@ -75,6 +75,8 @@ export const ClientsSection: React.FC = () => {
                 .clients-carousel-wrapper .swiper-slide {
                     height: auto;
                     display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
             `}</style>
         </section>
