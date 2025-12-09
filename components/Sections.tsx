@@ -430,7 +430,24 @@ export const ContactSection: React.FC = () => {
   const [showSuccess, setShowSuccess] = React.useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormState({ ...formState, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    // Validación para nombre: solo letras y espacios
+    if (name === 'name') {
+      const onlyLetters = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+      setFormState({ ...formState, [name]: onlyLetters });
+      return;
+    }
+
+    // Validación para teléfono: solo números
+    if (name === 'phone') {
+      const onlyNumbers = value.replace(/[^0-9]/g, '');
+      setFormState({ ...formState, [name]: onlyNumbers });
+      return;
+    }
+
+    // Para otros campos, sin restricciones
+    setFormState({ ...formState, [name]: value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -568,6 +585,8 @@ export const ContactSection: React.FC = () => {
                         value={formState.name}
                         onChange={handleChange}
                         type="text"
+                        pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
+                        title="Solo se permiten letras y espacios"
                         className="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-100 outline-none transition-all bg-slate-50 focus:bg-white"
                         placeholder="Juan Pérez"
                       />
@@ -587,6 +606,10 @@ export const ContactSection: React.FC = () => {
                         value={formState.phone}
                         onChange={handleChange}
                         type="tel"
+                        pattern="[0-9]+"
+                        minLength={10}
+                        maxLength={15}
+                        title="Solo se permiten números (10-15 dígitos)"
                         className="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-100 outline-none transition-all bg-slate-50 focus:bg-white"
                         placeholder="55 1234 5678"
                       />
