@@ -10,7 +10,9 @@ import {
   Phone,
   List,
   MessageSquare,
-  Clock
+  MessageCircle,
+  Clock,
+  X
 } from 'lucide-react';
 import { SERVICES, BENEFITS, STATS, CLIENTS, REVIEWS, BRANDS, CONTACT_INFO } from '../constants';
 
