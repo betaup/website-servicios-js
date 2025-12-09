@@ -425,6 +425,7 @@ export const BrandsSection: React.FC = () => {
 
 export const ContactSection: React.FC = () => {
   const [formState, setFormState] = React.useState({ name: '', phone: '', service: '', message: '' });
+  const [showSuccess, setShowSuccess] = React.useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -432,9 +433,15 @@ export const ContactSection: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    alert('Gracias por tu mensaje. Nos pondremos en contacto pronto.');
+    // Mostrar modal de éxito
+    setShowSuccess(true);
+    // Limpiar formulario
     setFormState({ name: '', phone: '', service: '', message: '' });
+
+    // Auto-cerrar después de 5 segundos
+    setTimeout(() => {
+      setShowSuccess(false);
+    }, 5000);
   };
 
   return (
@@ -515,7 +522,6 @@ export const ContactSection: React.FC = () => {
                 name="contact"
                 method="POST"
                 data-netlify="true"
-                data-netlify-recaptcha="true"
                 data-netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
                 className="space-y-6"
@@ -609,9 +615,6 @@ export const ContactSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Netlify reCAPTCHA */}
-                <div data-netlify-recaptcha="true"></div>
-
                 {/* Submit Button */}
                 <button
                   type="submit"
@@ -624,6 +627,93 @@ export const ContactSection: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Success Modal */}
+      {showSuccess && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative animate-scaleIn">
+            {/* Close button */}
+            <button
+              onClick={() => setShowSuccess(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+              aria-label="Cerrar"
+            >
+              <X size={24} />
+            </button>
+
+            {/* Success Icon */}
+            <div className="flex justify-center mb-6">
+              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center animate-bounce-once">
+                <CheckCircle className="text-green-600" size={48} />
+              </div>
+            </div>
+
+            {/* Success Message */}
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">
+                ¡Mensaje Enviado!
+              </h3>
+              <p className="text-slate-600 mb-6">
+                Gracias por contactarnos. Hemos recibido tu mensaje y nos pondremos en contacto contigo pronto.
+              </p>
+
+              {/* WhatsApp CTA */}
+              <div className="space-y-3">
+                <a
+                  href={CONTACT_INFO.whatsappUrl}
+                  className="block w-full bg-[#25D366] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#20bd5a] transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                >
+                  <MessageCircle size={20} />
+                  ¿Urgente? Escríbenos por WhatsApp
+                </a>
+
+                <button
+                  onClick={() => setShowSuccess(false)}
+                  className="w-full bg-slate-100 text-slate-700 font-semibold py-3 px-6 rounded-xl hover:bg-slate-200 transition-all"
+                >
+                  Cerrar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Animations */}
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+          from { 
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to { 
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        @keyframes bounce-once {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.1); }
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+        
+        .animate-scaleIn {
+          animation: scaleIn 0.3s ease-out;
+        }
+        
+        .animate-bounce-once {
+          animation: bounce-once 0.6s ease-out;
+        }
+      `}</style>
     </section>
   );
 };
