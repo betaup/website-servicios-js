@@ -12,6 +12,11 @@ import {
 } from './components/Sections';
 
 const App: React.FC = () => {
+  // Scroll al inicio al cargar/recargar la página
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col font-sans text-slate-800">
       <Header />
