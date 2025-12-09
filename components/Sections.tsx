@@ -433,17 +433,34 @@ export const ContactSection: React.FC = () => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Mostrar modal de éxito
-    setShowSuccess(true);
-    // Limpiar formulario
-    setFormState({ name: '', phone: '', service: '', message: '' });
 
-    // Auto-cerrar después de 5 segundos
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 5000);
+    // Preparar datos del formulario para Netlify
+    const formElement = e.target as HTMLFormElement;
+    const formData = new FormData(formElement);
+
+    try {
+      // Enviar a Netlify Forms
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+
+      // Mostrar modal de éxito
+      setShowSuccess(true);
+      // Limpiar formulario
+      setFormState({ name: '', phone: '', service: '', message: '' });
+
+      // Auto-cerrar después de 5 segundos
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
+    } catch (error) {
+      // Si hay error, mostrar alerta básica
+      alert('Hubo un error al enviar el mensaje. Por favor intenta de nuevo o contáctanos por WhatsApp.');
+    }
   };
 
   return (
