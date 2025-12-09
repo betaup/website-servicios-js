@@ -5,7 +5,11 @@ import {
   ShieldCheck,
   Clock,
   UserCheck,
-  Award
+  Award,
+  Wrench,
+  Hammer,
+  ClipboardList,
+  Smile
 } from 'lucide-react';
 import { Service, Benefit, Stat, Client, Review, Brand } from './types';
 
@@ -58,10 +62,10 @@ export const BENEFITS: Benefit[] = [
 ];
 
 export const STATS: Stat[] = [
-  { id: '1', value: '+800', label: 'Mantenimientos' }, // Featured stat - placed first
-  { id: '2', value: '+500', label: 'Instalaciones' },
-  { id: '3', value: '+1200', label: 'Reparaciones' },
-  { id: '4', value: '98%', label: 'Clientes Felices' },
+  { id: '1', value: '+800', label: 'Mantenimientos', icon: Wrench }, // Featured stat - placed first
+  { id: '2', value: '+500', label: 'Instalaciones', icon: Hammer },
+  { id: '3', value: '+1200', label: 'Reparaciones', icon: ClipboardList },
+  { id: '4', value: '98%', label: 'Clientes Felices', icon: Smile },
 ];
 
 export const CLIENTS: Client[] = [

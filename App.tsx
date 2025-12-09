@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Footer, WhatsAppButton } from './components/Layout';
+import { Header, Footer, WhatsAppButton } from './components/layout';
 import {
   HeroSection,
   ServicesSection,
@@ -9,7 +9,7 @@ import {
   ReviewsSection,
   BrandsSection,
   ContactSection
-} from './components/Sections';
+} from './components/sections';
 
 const App: React.FC = () => {
   // Scroll al inicio al cargar/recargar la página
