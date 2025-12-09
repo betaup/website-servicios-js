@@ -9,32 +9,24 @@ export const ClientsSection: React.FC = () => {
         dots: false,
         infinite: true,
         speed: 800,
-        slidesToShow: 2, // Default mobile (mobileFirst: true)
+        slidesToShow: 4, // Default Desktop
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 1300,
         pauseOnHover: true,
         cssEase: "ease-in-out",
-        mobileFirst: true, // Key change for robust mobile rendering
         responsive: [
             {
-                breakpoint: 640, // sm
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 768, // md
+                breakpoint: 1024, // < 1024px
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
                 }
             },
             {
-                breakpoint: 1024, // lg
+                breakpoint: 640, // < 640px (Mobile)
                 settings: {
-                    slidesToShow: 4,
+                    slidesToShow: 2, // "2 cada pasada" en móvil
                     slidesToScroll: 1,
                 }
             }
