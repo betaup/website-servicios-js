@@ -8,32 +8,33 @@ export const ClientsSection: React.FC = () => {
     const settings = {
         dots: false,
         infinite: true,
-        slidesToShow: 4,
+        speed: 800,
+        slidesToShow: 2, // Default mobile (mobileFirst: true)
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 1300,
         pauseOnHover: true,
-        speed: 800,
         cssEase: "ease-in-out",
+        mobileFirst: true, // Key change for robust mobile rendering
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 640, // sm
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 768, // md
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
                 }
             },
             {
-                breakpoint: 768,
+                breakpoint: 1024, // lg
                 settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 4,
                     slidesToScroll: 1,
                 }
             }
@@ -66,21 +67,21 @@ export const ClientsSection: React.FC = () => {
                 </div>
             </div>
             <style>{`
-        /* Default tablet/desktop spacing */
+        /* Base styles (Mobile First) */
         .clients-carousel-wrapper .slick-list {
-          margin: 0 -12px;
+          margin: 0 -6px;
         }
         .clients-carousel-wrapper .slick-slide > div {
-          padding: 0 12px;
+          padding: 0 6px;
         }
 
-        /* Mobile specific adjustments to maximize space */
-        @media (max-width: 640px) {
+        /* Desktop/Tablet adjustments (min-width) */
+        @media (min-width: 640px) {
           .clients-carousel-wrapper .slick-list {
-            margin: 0 -6px;
+            margin: 0 -12px;
           }
           .clients-carousel-wrapper .slick-slide > div {
-            padding: 0 6px;
+            padding: 0 12px;
           }
         }
         

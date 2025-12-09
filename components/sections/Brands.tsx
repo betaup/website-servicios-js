@@ -8,32 +8,33 @@ export const BrandsSection: React.FC = () => {
     const settings = {
         dots: false,
         infinite: true,
-        slidesToShow: 5,
+        speed: 800,
+        slidesToShow: 2, // Default mobile (mobileFirst: true)
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 1300,
         pauseOnHover: true,
-        speed: 800,
         cssEase: "ease-in-out",
+        mobileFirst: true,
         responsive: [
             {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 768,
+                breakpoint: 640,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
                 }
             },
             {
-                breakpoint: 480,
+                breakpoint: 768,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 5,
                     slidesToScroll: 1,
                 }
             }
@@ -75,22 +76,21 @@ export const BrandsSection: React.FC = () => {
           user-select: none;
         }
         
-        /* Default tablet/desktop spacing */
+        /* Base styles (Mobile First) */
         .brands-carousel-wrapper .slick-list {
-          margin: 0 -12px;
-          padding: 4px 0;
+          margin: 0 -6px;
         }
         .brands-carousel-wrapper .slick-slide > div {
-          padding: 0 12px;
+          padding: 0 6px;
         }
 
-        /* Mobile specific adjustments */
-        @media (max-width: 640px) {
+        /* Desktop/Tablet adjustments (min-width) */
+        @media (min-width: 640px) {
           .brands-carousel-wrapper .slick-list {
-            margin: 0 -6px;
+            margin: 0 -12px;
           }
           .brands-carousel-wrapper .slick-slide > div {
-            padding: 0 6px;
+            padding: 0 12px;
           }
         }
         
