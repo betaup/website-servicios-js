@@ -31,7 +31,7 @@ export const BrandsSection: React.FC = () => {
             {
                 breakpoint: 640,
                 settings: {
-                    slidesToShow: 2, // móvil → 2 visibles
+                    slidesToShow: 1, // móvil → 1 visible
                 }
             }
         ]
