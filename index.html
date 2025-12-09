@@ -96,6 +96,18 @@
 <body class="bg-slate-50 text-slate-800 antialiased">
   <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
+
+  <!-- Netlify Forms Detection - Form estático oculto para detección -->
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="tel" name="phone" />
+    <select name="service">
+      <option value="aire">Aire Acondicionado</option>
+      <option value="electricidad">Electricidad</option>
+      <option value="solar">Paneles Solares</option>
+    </select>
+    <textarea name="message"></textarea>
+  </form>
 </body>
 
 </html>
