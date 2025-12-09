@@ -9,23 +9,26 @@ export const BrandsSection: React.FC = () => {
         dots: false,
         infinite: true,
         speed: 800,
-        slidesToShow: 5,
+        slidesToShow: 1, // Default MOBILE: 1 (mobileFirst: true)
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 1300,
         pauseOnHover: true,
         cssEase: "ease-in-out",
+        mobileFirst: true,
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 640, // min-width 640px
                 settings: {
-                    slidesToShow: 4,
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
                 }
             },
             {
-                breakpoint: 768, // min-width 768px
+                breakpoint: 1024, // min-width 1024px
                 settings: {
-                    slidesToShow: 4, // Desktop
+                    slidesToShow: 5,
+                    slidesToScroll: 1,
                 }
             }
         ]
