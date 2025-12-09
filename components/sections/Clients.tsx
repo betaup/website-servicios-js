@@ -9,7 +9,7 @@ export const ClientsSection: React.FC = () => {
         dots: false,
         infinite: true,
         speed: 800,
-        slidesToShow: 4, // Default Desktop
+        slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 1300,
@@ -17,17 +17,15 @@ export const ClientsSection: React.FC = () => {
         cssEase: "ease-in-out",
         responsive: [
             {
-                breakpoint: 1024, // < 1024px
+                breakpoint: 1024,
                 settings: {
                     slidesToShow: 3,
-                    slidesToScroll: 1,
                 }
             },
             {
-                breakpoint: 640, // < 640px (Mobile)
+                breakpoint: 640,
                 settings: {
-                    slidesToShow: 2, // "2 cada pasada" en móvil
-                    slidesToScroll: 1,
+                    slidesToShow: 2, // móvil → 2 visibles
                 }
             }
         ]
@@ -36,20 +34,22 @@ export const ClientsSection: React.FC = () => {
     return (
         <section className="py-20 bg-white border-b border-slate-100 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
                 <p className="text-slate-500 font-medium mb-12 uppercase tracking-widest text-sm text-center">
                     Empresas que confían en nosotros
                 </p>
 
-
                 <div className="clients-carousel-wrapper">
                     <Slider {...settings}>
-                        {CLIENTS.map((client) => (
+                        {CLIENTS.map(client => (
                             <div key={client.id}>
                                 <div className="flex items-center justify-center h-24 transition-all duration-300 hover:scale-110">
-                                    <div className="bg-slate-50 px-8 py-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                                    <div className="bg-slate-50 px-4 md:px-8 py-4 md:py-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow w-full">
                                         <div className="flex items-center gap-3 text-slate-400 hover:text-brand-600 transition-colors">
                                             <span className="w-4 h-4 rounded-full bg-brand-200"></span>
-                                            <span className="text-lg md:text-xl font-bold whitespace-nowrap">{client.name}</span>
+                                            <span className="text-base md:text-xl font-bold whitespace-nowrap">
+                                                {client.name}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -58,51 +58,40 @@ export const ClientsSection: React.FC = () => {
                     </Slider>
                 </div>
             </div>
-            <style>{`
-        /* Base styles (Mobile First) */
-        .clients-carousel-wrapper .slick-list {
-          margin: 0 -6px;
-        }
-        .clients-carousel-wrapper .slick-slide > div {
-          padding: 0 6px;
-        }
 
-        /* Desktop/Tablet adjustments (min-width) */
-        @media (min-width: 640px) {
-          .clients-carousel-wrapper .slick-list {
-            margin: 0 -12px;
-          }
-          .clients-carousel-wrapper .slick-slide > div {
-            padding: 0 12px;
-          }
-        }
-        
-        .clients-carousel-wrapper .slick-track {
-          display: flex !important;
-          align-items: stretch;
-        }
-        
-        .clients-carousel-wrapper .slick-slide {
-          height: auto;
-          display: flex !important;
-          flex-direction: column;
-          justify-content: center;
-        }
-        
-        .clients-carousel-wrapper .slick-slide > div {
-          width: 100%;
-          flex-grow: 1;
-          display: flex;
-          flex-direction: column;
-        }
-        
-        .clients-carousel-wrapper .slick-slide > div > div {
-          flex-grow: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-      `}</style>
+            <style>{`
+                .clients-carousel-wrapper .slick-slider {
+                    user-select: none;
+                }
+
+                /* MOBILE FIRST */
+                .clients-carousel-wrapper .slick-list {
+                    margin: 0 -2px !important;
+                }
+                .clients-carousel-wrapper .slick-slide > div {
+                    padding: 0 2px !important;
+                }
+
+                /* Tablet & Desktop */
+                @media (min-width: 640px) {
+                    .clients-carousel-wrapper .slick-list {
+                        margin: 0 -12px !important;
+                    }
+                    .clients-carousel-wrapper .slick-slide > div {
+                        padding: 0 12px !important;
+                    }
+                }
+
+                .clients-carousel-wrapper .slick-slide {
+                    display: flex !important;
+                    height: auto;
+                }
+
+                .clients-carousel-wrapper .slick-slide > div {
+                    width: 100% !important;
+                    display: flex !important;
+                }
+            `}</style>
         </section>
     );
 };

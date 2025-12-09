@@ -9,7 +9,7 @@ export const BrandsSection: React.FC = () => {
         dots: false,
         infinite: true,
         speed: 800,
-        slidesToShow: 5, // Default Desktop
+        slidesToShow: 5,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 1300,
@@ -17,24 +17,21 @@ export const BrandsSection: React.FC = () => {
         cssEase: "ease-in-out",
         responsive: [
             {
-                breakpoint: 1024, // < 1024px
+                breakpoint: 1024,
                 settings: {
                     slidesToShow: 4,
-                    slidesToScroll: 1,
                 }
             },
             {
-                breakpoint: 768, // < 768px
+                breakpoint: 768,
                 settings: {
                     slidesToShow: 3,
-                    slidesToScroll: 1,
                 }
             },
             {
-                breakpoint: 640, // < 640px (Mobile)
+                breakpoint: 640,
                 settings: {
-                    slidesToShow: 2, // "2 cada pasada" en móvil
-                    slidesToScroll: 1,
+                    slidesToShow: 2, // móvil → 2 visibles
                 }
             }
         ]
@@ -43,6 +40,7 @@ export const BrandsSection: React.FC = () => {
     return (
         <section className="py-20 bg-slate-50 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
                 <h3 className="text-center text-2xl md:text-3xl font-bold text-slate-800 mb-12">
                     Especialistas en las mejores marcas
                 </h3>
@@ -51,15 +49,15 @@ export const BrandsSection: React.FC = () => {
                     <Slider {...settings}>
                         {BRANDS.map(brand => (
                             <div key={brand.id}>
-                                <div className="flex items-center justify-center h-24 transition-all duration-300 hover:scale-110">
+                                <div className="flex items-center justify-center h-20 md:h-24 transition-all duration-300 hover:scale-110 w-full">
                                     {brand.logoUrl ? (
                                         <img
                                             src={brand.logoUrl}
                                             alt={brand.name}
-                                            className="h-12 md:h-16 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                                            className="h-10 md:h-16 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                                         />
                                     ) : (
-                                        <span className="text-slate-400 hover:text-brand-600 font-semibold text-lg whitespace-nowrap transition-colors">
+                                        <span className="text-slate-400 hover:text-brand-600 font-semibold text-base md:text-lg whitespace-nowrap transition-colors">
                                             {brand.name}
                                         </span>
                                     )}
@@ -71,42 +69,48 @@ export const BrandsSection: React.FC = () => {
             </div>
 
             <style>{`
-        .brands-carousel-wrapper .slick-slider {
-          user-select: none;
-        }
-        
-        /* Base styles (Mobile First) */
-        .brands-carousel-wrapper .slick-list {
-          margin: 0 -6px;
-        }
-        .brands-carousel-wrapper .slick-slide > div {
-          padding: 0 6px;
-        }
+                .brands-carousel-wrapper .slick-slider {
+                    user-select: none;
+                }
 
-        /* Desktop/Tablet adjustments (min-width) */
-        @media (min-width: 640px) {
-          .brands-carousel-wrapper .slick-list {
-            margin: 0 -12px;
-          }
-          .brands-carousel-wrapper .slick-slide > div {
-            padding: 0 12px;
-          }
-        }
-        
-        .brands-carousel-wrapper .slick-slide {
-          opacity: 0.6;
-          transition: opacity 0.3s ease;
-        }
-        
-        .brands-carousel-wrapper .slick-slide:hover {
-          opacity: 1;
-        }
-        
-        .brands-carousel-wrapper .slick-track {
-          display: flex;
-          align-items: center;
-        }
-      `}</style>
+                /* MOBILE FIRST */
+                .brands-carousel-wrapper .slick-list {
+                    margin: 0 -2px !important;
+                }
+                .brands-carousel-wrapper .slick-slide > div {
+                    padding: 0 2px !important;
+                }
+
+                /* Tablet & Desktop */
+                @media (min-width: 640px) {
+                    .brands-carousel-wrapper .slick-list {
+                        margin: 0 -12px !important;
+                    }
+                    .brands-carousel-wrapper .slick-slide > div {
+                        padding: 0 12px !important;
+                    }
+                }
+
+                .brands-carousel-wrapper .slick-slide {
+                    opacity: 0.6;
+                    transition: opacity 0.3s ease;
+                    display: flex !important;
+                }
+
+                .brands-carousel-wrapper .slick-slide:hover {
+                    opacity: 1;
+                }
+
+                .brands-carousel-wrapper .slick-slide > div {
+                    width: 100% !important;
+                    display: flex !important;
+                }
+
+                .brands-carousel-wrapper .slick-track {
+                    display: flex !important;
+                    align-items: center;
+                }
+            `}</style>
         </section>
     );
 };
