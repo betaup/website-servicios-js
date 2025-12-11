@@ -1,10 +1,18 @@
 import React from 'react';
 import { CheckCircle } from 'lucide-react';
 import { BENEFITS } from '../../constants';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 export const BenefitsSection: React.FC = () => {
+    const { ref, isVisible } = useScrollReveal({ threshold: 0.15, delay: 100 });
+
     return (
-        <section id="beneficios" className="py-20 bg-slate-50">
+        <section
+            ref={ref}
+            id="beneficios"
+            className={`py-20 bg-slate-50 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+        >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row items-center gap-16">
                     <div className="lg:w-1/2 order-2 lg:order-1 grid grid-cols-1 sm:grid-cols-2 gap-6">

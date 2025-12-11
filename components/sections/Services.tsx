@@ -1,9 +1,17 @@
 import React from 'react';
 import { SERVICES } from '../../constants';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 export const ServicesSection: React.FC = () => {
+    const { ref, isVisible } = useScrollReveal({ threshold: 0.15 });
+
     return (
-        <section id="servicios" className="py-20 bg-white">
+        <section
+            ref={ref}
+            id="servicios"
+            className={`py-20 bg-white transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+        >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Nuestros Servicios</h2>

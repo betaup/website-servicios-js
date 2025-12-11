@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { User, Phone, List, MessageSquare, Send, X, CheckCircle, Clock, MessageCircle } from 'lucide-react';
 import { CONTACT_INFO } from '../../constants';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 export const ContactSection: React.FC = () => {
     const [formState, setFormState] = useState({ name: '', phone: '', service: '', message: '' });
     const [showSuccess, setShowSuccess] = useState(false);
+    const { ref, isVisible } = useScrollReveal({ threshold: 0.1, delay: 350 });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -58,7 +60,11 @@ export const ContactSection: React.FC = () => {
     };
 
     return (
-        <section className="py-24 bg-gradient-to-br from-slate-50 via-brand-50/30 to-slate-50 relative">
+        <section
+            ref={ref}
+            className={`py-24 bg-gradient-to-br from-slate-50 via-brand-50/30 to-slate-50 relative transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+        >
             {/* Decorative elements */}
             <div className="absolute top-0 left-0 w-64 h-64 bg-brand-100 rounded-full blur-3xl opacity-20"></div>
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-sky-100 rounded-full blur-3xl opacity-20"></div>

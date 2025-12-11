@@ -3,10 +3,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import { BRANDS } from '../../constants';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 export const BrandsSection: React.FC = () => {
+    const { ref, isVisible } = useScrollReveal({ threshold: 0.15, delay: 250 });
+
     return (
-        <section className="py-20 bg-slate-50 overflow-hidden">
+        <section
+            ref={ref}
+            className={`py-20 bg-slate-50 overflow-hidden transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+        >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h3 className="text-center text-2xl md:text-3xl font-bold text-slate-800 mb-12">
                     Especialistas en las mejores marcas
